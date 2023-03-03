@@ -1,0 +1,22 @@
+strong{
+  color: lightblue;
+}
+
+h3{
+  text-transform: uppercase;
+}
+
+p{
+  font-size: 15px;
+}
+
+.alert{
+  width: 200px;
+  display: inline-block;
+}
+
+.highlight{
+background-color: aquamarine;
+font-weight: bold;
+text-transform: uppercase;
+}

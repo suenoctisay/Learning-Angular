@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DataBinding</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <div class="property-binding"><!-- Interpolation -->
+      <h3>Interpolation</h3>
+      <p>String: <strong>{{ url }}</strong></p>
+      <p>The result of 1 + 1 isn't {{ 1+1 + getValue() }} </p>
+    </div><!-- Interpolation -->
+
+    <hr><br><br>
+
+    <div><!-- Property Binding -->
+      <h3>Property Binding</h3>
+      <!-- it hasn't worked
+        <img [src]="img" alt="">
+        <img scr={{ img }} alt="">
+        <img bind-src="img" alt="">
+      -->
+      <p><em>p.s.: interpolation is a property binding</em></p>
+    </div><!-- Property Binding -->
+
+    <hr><br><br>
+
+    <div><!-- Class and Style Binding -->
+      <h3>Class and Style Binding</h3>
+      Select a class:
+      <select #class (change)="0">
+        <option value="alert-primary">primary</option>
+        <option value="alert-success">success</option>
+        <option value="alert-danger">danger</option>
+        <option value="alert-warning">warning</option>
+        <option value="alert-info">info</option>
+        <option value="alert-light">light</option>
+        <option value="alert-dark">dark</option>
+      </select>
+
+      <br><br>
+
+      <div class="alert {{ class.value  }}">The box will be colorful according the selection</div>
+      <div class="alert alert-dark" role="alert" [style.display]="class.value == 'alert-dark' ? 'block' : 'none'">This box will aper only if dark class be select</div>
+
+      <br><br>
+
+      <div class="alert" role="alert" [class.alert-primary]="class.value == 'alert-primary'">primary</div>
+      <div class="alert" role="alert" [class.alert-success]="class.value == 'alert-success'">success</div>
+      <div class="alert" role="alert" [class.alert-danger]="class.value == 'alert-danger'">danger</div>
+      <div class="alert" role="alert" [class.alert-warning]="class.value == 'alert-warning'">warning</div>
+      <div class="alert" role="alert" [class.alert-info]="class.value == 'alert-info'">info</div>
+      <div class="alert" role="alert" [class.alert-light]="class.value == 'alert-light'">light</div>
+      <div class="alert" role="alert" [class.alert-dark]="class.value == 'alert-dark'">dark</div>
+    </div><!-- Class and Style Binding -->
+
+    <hr><br><br>
+
+    <div><!-- Event Binding -->
+      <h3>Event Binding</h3>
+      <div>
+        <button (click)="clickBtn()" class="btn btn-primary">
+          click here
+        </button>
+
+        <br><br>
+
+        <input type="text"
+               (keyup)="onKeyUp($event)"
+               (keyup.enter)="saveValue(inputTag.value)"
+               (blur)="saveValue(inputTag.value)"
+               #inputTag />
+        <br><br>
+        <p>Value now: {{ inputValue }}</p>
+        <p>Value saved: {{ valueSaved }}</p>
+
+        <span (mouseover)="onMouseOverOut()"
+              (mouseout)="onMouseOverOut()"
+              [class.highlight]="isMOuseOver">
+          Hover Mouse Here
+        </span>
+      </div>
+    </div><!-- Event Binding -->
+
+    <hr><br><br>
+
+    <div><!-- Two-Way Data Binding -->
+      <h3>Two-Way Data Binding</h3>
+      <div>
+        <input type="text"
+               [value]="name"
+               (input)="name = typedValue.value"
+               #typedValue/><!-- $event.target.value hasn't worked -->
+
+         <!-- this example hasn't worked
+        <input type="text"
+               [ngModel]="name"
+               (ngModelChange)="name =  $event"
+        /> -->
+
+        <!-- it hasn't worked either
+        <input type="text" [(ngModel)]="name"/> -->
+
+        <!-- the same here
+        <input type="text" bindon-ngModel="name"/> -->
+
+        <p>You typed: {{ name }}</p>
+      </div>
+      <div>
+        <!-- it hasn't worked AAAAAAAAAAAAAAAAAAAAAA
+        <input type="text" ngModel="person.name">
+        <input type="text" ngModel="person.yearsOld"> -->
+
+        <!-- i was trying to make it work but it hasn't anyway
+        <input type="text" [value]="person.name"/>
+        <input type="text" [value]="person.yearsOld"> -->
+
+        <!-- <p> My name is {{ person.name }} and i'm {{ person.yearsOld }} years old.</p> -->
+      </div>
+    </div><!-- Two-Way Data Binding -->
+
+    <hr><br><br>
+
+    <div class="inputOutput-properties"><!-- Input-Output Properties -->
+      <h3>Input-Output Properties</h3>
+      <app-input-property [name]="courseName"></app-input-property>
+      <app-output-property [value]="initialValue"
+                           (valueChanged)="onValueChanged($event)">
+      </app-output-property>
+    </div><!-- Input-Output Properties -->
+
+    <hr>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>

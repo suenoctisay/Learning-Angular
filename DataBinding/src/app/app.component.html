@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>.</title>
+</head>
+<body>
+  <app-databinding></app-databinding>
+  <!-- =================================================================== -->
+  <app-life-cycle-hooks [initialValue]="value" *ngIf="!deleteCycle"></app-life-cycle-hooks>
+  <button class="btn btn-primary" (click)="changeValue()">Change Value</button>
+  <button class="btn btn-primary" (click)="destroyCycle()">Delete</button>
+</body>
+</html>
